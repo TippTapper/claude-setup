@@ -16,7 +16,7 @@ Kör detta på vilken dator som helst för att få exakt samma Claude Code-setup
 
 **Steg 2** — Klona detta repo:
 ```powershell
-git clone https://github.com/DITT_ANVÄNDARNAMN/claude-setup.git
+git clone https://github.com/TippTapper/claude-setup.git
 cd claude-setup
 ```
 
