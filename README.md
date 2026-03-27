@@ -2,9 +2,17 @@
 
 Kör detta på vilken dator som helst för att få exakt samma Claude Code-setup.
 
+## Krav — kontrollera innan du börjar
+
+- [ ] [Node.js](https://nodejs.org) är installerat
+- [ ] [Git](https://git-scm.com) är installerat
+- [ ] PowerShell är öppnad **som administratör** (högerklicka → "Kör som administratör")
+
+> Scriptet kontrollerar detta automatiskt och talar om vad som saknas.
+
 ## Snabbinstallation
 
-**Steg 1** — Installera [Node.js](https://nodejs.org) om du inte redan har det.
+**Steg 1** — Installera [Node.js](https://nodejs.org) och [Git](https://git-scm.com) om du inte redan har dem.
 
 **Steg 2** — Klona detta repo:
 ```powershell

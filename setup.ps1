@@ -6,13 +6,41 @@ Write-Host ""
 Write-Host "=== Claude Code Setup ===" -ForegroundColor Cyan
 Write-Host ""
 
-# 1. Kontrollera Node.js
-Write-Host "[1/4] Kollar Node.js..." -ForegroundColor Yellow
+# 0. Krav-kontroll
+Write-Host "[0/4] Kontrollerar krav..." -ForegroundColor Yellow
+$ok = $true
+
 if (-not (Get-Command node -ErrorAction SilentlyContinue)) {
-    Write-Host "Node.js saknas! Installera det fran: https://nodejs.org" -ForegroundColor Red
-    Write-Host "Kör scriptet igen efter installation."
+    Write-Host "  SAKNAS: Node.js - installera fran https://nodejs.org" -ForegroundColor Red
+    $ok = $false
+} else {
+    Write-Host "  OK: Node.js $(node --version)" -ForegroundColor Green
+}
+
+if (-not (Get-Command git -ErrorAction SilentlyContinue)) {
+    Write-Host "  SAKNAS: Git - installera fran https://git-scm.com" -ForegroundColor Red
+    $ok = $false
+} else {
+    Write-Host "  OK: Git $(git --version)" -ForegroundColor Green
+}
+
+$isAdmin = ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
+if (-not $isAdmin) {
+    Write-Host "  VARNING: Kör inte som administratör - npm install -g kan misslyckas" -ForegroundColor Yellow
+} else {
+    Write-Host "  OK: Kör som administratör" -ForegroundColor Green
+}
+
+if (-not $ok) {
+    Write-Host ""
+    Write-Host "Installera saknade program och kör scriptet igen." -ForegroundColor Red
     exit 1
 }
+
+Write-Host ""
+
+# 1. Kontrollera Node.js
+Write-Host "[1/4] Kollar Node.js..." -ForegroundColor Yellow
 Write-Host "Node.js OK: $(node --version)" -ForegroundColor Green
 
 # 2. Installera Claude Code
